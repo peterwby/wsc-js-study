@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <title>JS 7天入门</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root { color-scheme: light dark; }
+    body {font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; max-width: 860px; margin: 24px auto; padding: 0 12px;}
+    h1 {font-size: 22px; margin: 8px 0 16px;}
+    nav {display:flex; gap:8px; align-items:center; margin-bottom: 12px;}
+    nav .spacer {flex:1;}
+    button {padding:8px 12px; border:1px solid #ddd; background:#fff; border-radius:8px; cursor:pointer;}
+    button[disabled] {opacity:.5; cursor:not-allowed;}
+    .card {border:1px solid #e5e7eb; border-radius:10px; padding:16px; margin:16px 0; background:#fff;}
+    .title {font-weight:700; margin-bottom:8px;}
+    .actions {display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;}
+    .hint, .sol {color:#374151; background:#f9fafb; border:1px dashed #d1d5db; padding:10px; border-radius:8px; display:none; margin-top:8px; white-space:pre-wrap;}
+    .result {margin-top:8px; font-weight:600;}
+    .ok {color: #059669;} .err {color:#dc2626;}
+    .muted {color:#6b7280; font-size: 12px;}
+    .intro {line-height:1.65;}
+    .progress {font-size: 12px; color:#6b7280;}
+    .footer {margin-top:24px; color:#6b7280; font-size:12px;}
+    code, pre {background:#f3f4f6; padding:2px 4px; border-radius:6px;}
+    pre {padding:8px; overflow:auto;}
+    /* 讲解层次与颜色强化 */
+    .intro p {margin:10px 0;}
+    .intro b {color:#0f766e; background:rgba(15,118,110,.08); padding:2px 6px; border-radius:6px;}
+    .intro code {background:#eef2ff; color:#3730a3; padding:2px 6px; border-radius:6px;}
+    .intro pre {background:linear-gradient(180deg,#f8fafc,#f1f5f9); border:1px solid #e5e7eb; border-left:4px solid #6366f1;}
+    .intro ul {padding-left:20px;}
+    .intro ul li {margin:6px 0;}
+    /* 暗色主题适配 */
+    body[data-theme="dark"] .intro b {color:#5eead4; background:rgba(45,212,191,.12);} 
+    body[data-theme="dark"] .intro code {background:#1f2937; color:#a5b4fc;}
+    body[data-theme="dark"] .intro pre {background:#0b1220; border-color:#1f2937; border-left-color:#6366f1;}
+    /* 完成高亮 */
+    .card.done { border-color:#059669; background:#f0fdf4; }
+    /* 暗色主题 */
+    body[data-theme="dark"] { background:#0b1220; color:#e5e7eb; }
+    body[data-theme="dark"] .card { background:#0f172a; border-color:#1f2937; }
+    body[data-theme="dark"] .hint, body[data-theme="dark"] .sol { background:#111827; border-color:#374151; color:#d1d5db; }
+    body[data-theme="dark"] button { background:#0b1220; border-color:#374151; color:#e5e7eb; }
+    body[data-theme="dark"] .card.done { background:#052e1a; border-color:#16a34a; }
+    body[data-theme="dark"] code, body[data-theme="dark"] pre { background:#111827; }
+  </style>
+</head>
+<body>
+  <h1 id="title">JS 7天入门</h1>
+  <nav>
+    <button id="prev">上一课</button>
+    <button id="next" disabled>下一课</button>
+    <div class="spacer"></div>
+    <button id="toggleTheme" title="切换浅/深色">切换主题</button>
+    <span class="progress" id="progressText"></span>
+  </nav>
+  <div id="lesson" class="card"></div>
+  <div class="footer">提示：题目可重复作答；建议多打印日志观察中间结果。</div>
+
+  <script src="lessons.js"></script>
+  <script src="app.js"></script>
+  </body>
+</html>
+
+
