@@ -3,27 +3,32 @@ const LESSONS = [
     day: 1,
     title: "程序与变量（类型：数字、字符串、布尔型、数组、对象、null）",
     intro: `
-      <p>程序本质：输入 → 处理 → 输出。变量是"装数据的盒子"，用来存储程序运行过程中的数据。</p>
-      <p>常见类型：<code>数字型number</code>、<code>字符串型string</code>、<code>布尔型boolean</code>、<code>未定义undefined</code>、<code>空值null</code> 、 <code>对象object</code>、 <code>数组array</code>。</p>      
-      <p><b>变量 vs 常量：const 与 let</b></p>
-      <ul>
-        <li><b>变量（let）</b>：像"可变动的计数板"，里面的值可以改变。比如计数器、用户输入、计算结果等。
-          <div>示例：<code>let retries = 0; retries = retries + 1;</code>；<code>let currentPage = 1;</code> 翻页时 <code>currentPage++</code>。</div>
-          <div>适用：计数器、累加器、状态切换（如 loading→done）。</div>
-        </li>
-        <li><b>常量（const）</b>：像"贴了名字的盒子"，一旦设定就不能改变。但对象/数组允许改内容。
-          <div>示例：<code>const cart = [];</code> 之后可以 <code>cart.push(x)</code>，但不能 <code>cart = newCart</code> 把盒子换掉。</div>
-          <div>适用：配置、资料卡、不会被重新指向的数据集合。</div>
-        </li>
-        <li><b>经验法则</b>：
-          <ul>
-            <li>默认用 <code>const</code>，只有当你真的需要"重新赋值（= 重新指向）"时，改用 <code>let</code>。</li>
-            <li>自问一句：后面会不会给这个变量再次用 <code>=</code> 赋新值？会→<code>let</code>；不会→<code>const</code>。</li>
-          </ul>
-        </li>
-      </ul>
-      <p><b>在什么场景要用变量？</b> 当一个数据会被多次使用、会变化、或需要被命名以便理解时。例如：超市收银要计算应付金额。</p>
-      <pre>场景：收银台
+      <div class="block">
+        <p>程序本质：输入 → 处理 → 输出。变量是"装数据的盒子"，用来存储程序运行过程中的数据。</p>
+        <p>常见类型：<code>数字型number</code>、<code>字符串型string</code>、<code>布尔型boolean</code>、<code>未定义undefined</code>、<code>空值null</code> 、 <code>对象object</code>、 <code>数组array</code>。</p>      
+      </div>
+      <div class="block">
+        <p><b>变量 vs 常量：const 与 let</b></p>
+        <ul>
+          <li><b>变量（let）</b>：像"可变动的计数板"，里面的值可以改变。比如计数器、用户输入、计算结果等。
+            <div>示例：<code>let retries = 0; retries = retries + 1;</code>；<code>let currentPage = 1;</code> 翻页时 <code>currentPage++</code>。</div>
+            <div>适用：计数器、累加器、状态切换（如 loading→done）。</div>
+          </li>
+          <li><b>常量（const）</b>：像"贴了名字的盒子"，一旦设定就不能改变。但对象/数组允许改内容。
+            <div>示例：<code>const cart = [];</code> 之后可以 <code>cart.push(x)</code>，但不能 <code>cart = newCart</code> 把盒子换掉。</div>
+            <div>适用：配置、资料卡、不会被重新指向的数据集合。</div>
+          </li>
+          <li><b>经验法则</b>：
+            <ul>
+              <li>默认用 <code>const</code>，只有当你真的需要"重新赋值（= 重新指向）"时，改用 <code>let</code>。</li>
+              <li>自问一句：后面会不会给这个变量再次用 <code>=</code> 赋新值？会→<code>let</code>；不会→<code>const</code>。</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="block">
+        <p><b>在什么场景要用变量？</b> 当一个数据会被多次使用、会变化、或需要被命名以便理解时。例如：超市收银要计算应付金额。</p>
+        <pre>场景：收银台
 1) 用户买了 2 瓶饮料，每瓶 3.5 元；
 2) 有 10% 折扣；
 如何算应付？
@@ -36,38 +41,41 @@ const total = price * qty;               // 小计
 const pay = total * (1 - discountRate); // 应付
 console.log(pay); // 6.3
 </pre>
-      <pre>// 为什么需要 let？
+        <pre>// 为什么需要 let？
 // 用户又拿了一瓶 → 数量要 +1
 qty = qty + 1; // 或 qty += 1
 const newTotal = price * qty;
 const newPay = newTotal * (1 - discountRate);
 console.log(newPay); // 9.45
 </pre>
-      <p><b>数组与对象</b></p>
-      <ul>
-        <li>数组（array）：像一排座位或购物车里的商品队列，位置从 0 开始排号，<code>fruits[0]</code> 就是第一个座位/第一个商品。适合“同类项的集合”。
-          <ul>
-            <li>常见操作：为数组添加元素、删除元素、遍历数组。</li>
-            <li>例：<code>const cart = [{name:'可乐', price:3.5}, {name:'面包', price:6}]</code></li>
-          </ul>
-        </li>
-        <li>对象（object）：像一张“信息卡”或资料袋，每个格子都有名字，<code>user.name</code> 就是取“姓名”格。适合“一个事物的属性包”。
-          <ul>
-            <li>更像字典/映射：<code>const user = { id:1, name:'Tom', vip:true }</code></li>
-          </ul>
-        </li>
-        <li><i>它们与简单数据类型（number/string/boolean）有什么不同？</i>
-          <ul>
-            <li>简单类型只有一个值；数组/对象是“容器”，可以装很多值，还能嵌套。</li>
-            <li>数组按“位置号”取值，比如取数组arr的第一个元素用 arr[0]；对象按“名字键”取值，比如取对象obj的name属性用 obj.name。</li>
-            <li>描述“一组东西”用数组；描述“一个东西的多个属性”用对象。</li>
-          </ul>
-        </li>
-      </ul>
-      
-      <p><b>小贴士：数组与对象怎么选？</b> 如果你在列清单（很多相同种类）→ 用 <code>数组</code>；如果你在填表（同一个东西的不同栏位/属性）→ 用 <code>对象</code>。取数组的第一个元素用 <code>arr[0]</code>，取对象的“姓名”属性用 <code>obj.name</code>。</p>
-      <p><b>编程思路</b></p>
-      <pre>需求：给出 3 个分数，输出平均分，并提示是否达标（≥ 90：优秀）。
+      </div>
+      <div class="block">
+        <p><b>数组与对象</b></p>
+        <ul>
+          <li>数组（array）：像一排座位或购物车里的商品队列，位置从 0 开始排号，<code>fruits[0]</code> 就是第一个座位/第一个商品。适合“同类项的集合”。
+            <ul>
+              <li>常见操作：为数组添加元素、删除元素、遍历数组。</li>
+              <li>例：<code>const cart = [{name:'可乐', price:3.5}, {name:'面包', price:6}]</code></li>
+            </ul>
+          </li>
+          <li>对象（object）：像一张“信息卡”或资料袋，每个格子都有名字，<code>user.name</code> 就是取“姓名”格。适合“一个事物的属性包”。
+            <ul>
+              <li>更像字典/映射：<code>const user = { id:1, name:'Tom', vip:true }</code></li>
+            </ul>
+          </li>
+          <li><i>它们与简单数据类型（number/string/boolean）有什么不同？</i>
+            <ul>
+              <li>简单类型只有一个值；数组/对象是“容器”，可以装很多值，还能嵌套。</li>
+              <li>数组按“位置号”取值，比如取数组arr的第一个元素用 arr[0]；对象按“名字键”取值，比如取对象obj的name属性用 obj.name。</li>
+              <li>描述“一组东西”用数组；描述“一个东西的多个属性”用对象。</li>
+            </ul>
+          </li>
+        </ul>
+        <p><b>小贴士：数组与对象怎么选？</b> 如果你在列清单（很多相同种类）→ 用 <code>数组</code>；如果你在填表（同一个东西的不同栏位/属性）→ 用 <code>对象</code>。取数组的第一个元素用 <code>arr[0]</code>，取对象的“姓名”属性用 <code>obj.name</code>。</p>
+      </div>
+      <div class="block">
+        <p><b>编程思路</b></p>
+        <pre>需求：给出 3 个分数，输出平均分，并提示是否达标（≥ 90：优秀）。
 具体思路：这个问题的核心是"计算平均分"和"判断等级"两个步骤。我们可以用数组存储所有分数（为什么用数组而不用对象？因为分数是同一种类型的数据，用数组更方便），用循环来求和，然后计算平均值，最后用条件判断来输出等级。
 步骤：
 1) 分析需求：程序要做什么？
@@ -95,12 +103,13 @@ console.log(newPay); // 9.45
    - 用 [100, 100, 100] 测试：应该输出 100, "优秀"
    - 用 [60, 70, 80] 测试：应该输出 70, "继续加油"
   </pre>
-    <p>
-      <b>进一步学习</b>：如果想系统看“变量/数据类型”的完整语法，请参考
-      <a href="https://www.runoob.com/js/js-variables.html" target="_blank" rel="noopener">变量（runoob）</a>
-      与
-      <a href="https://www.runoob.com/js/js-datatypes.html" target="_blank" rel="noopener">数据类型（runoob）</a>。
-    </p>
+        <p>
+          <b>进一步学习</b>：如果想系统看“变量/数据类型”的完整语法，请参考
+          <a href="https://www.runoob.com/js/js-variables.html" target="_blank" rel="noopener">变量（runoob）</a>
+          与
+          <a href="https://www.runoob.com/js/js-datatypes.html" target="_blank" rel="noopener">数据类型（runoob）</a>。
+        </p>
+      </div>
     `,
     questions: [
       {
@@ -218,48 +227,55 @@ console.log(newPay); // 9.45
     day: 2,
     title: '运算符：让数据"动起来"（计算、比较、判断）',
     intro: `
-      <p>程序本质：输入 → 处理 → 输出。</p>
-      <p>昨天我们学会了"装数据"，今天学习"让数据动起来"——用运算符进行计算、比较、判断。</p>
+      <div class="block">
+        <p>程序本质：输入 → 处理 → 输出。</p>
+        <p>昨天我们学会了"装数据"，今天学习"让数据动起来"——用运算符进行计算、比较、判断。</p>
+      </div>
       
-      <p><b>运算符就像"计算器"</b>：</p>
-      <ul>
-        <li><b>算术运算</b>：像计算器一样做数学题
-          <div>示例：<code>加号+ 减号- 乘号* 除号/ 取余号%</code> 就像 <code>3 + 5 = 8</code>、<code>10 / 2 = 5</code></div>
-          <div>用途：价格计算、数量统计、百分比等</div>
-        </li>
-        <li><b>比较运算</b>：像"比大小"游戏
-          <div><code>> < >= <= == ===</code></div>
-          <div>== 和 === 的区别：== 是宽松比较，只比较内容是否相同，不检查类型，=== 是严格比较，除了检查内容是否相同还检查类型是否相同</div>
-          <div>示例：<code>5 > 3</code> 结果是 <code>true</code></div>
-          <div>用途：判断条件、筛选数据、做决定</div>
-        </li>
-        <li><b>逻辑运算</b>：把多个条件组合起来，判断是否满足条件
-          <div>示例：<code>&& || !</code></div>
-          <div>具体例子：</div>
-          <ul>
-            <li><code>&&</code>（与：必须所有条件都满足，结果才为真）：<code>age >= 18 && isBoy</code> 表示"年龄≥18岁 并且 是男孩"</li>
-            <li><code>||</code>（或：只要有一个条件满足，结果就为真）：<code>isStudent || isTeacher</code> 表示"是学生 或者 是老师"</li>
-            <li><code>!</code>（非：取反，结果为真变为假，结果为假变为真）：<code>!isBoy</code> 表示"不是男孩"</li>
-          </ul>
-          <div>用途：复杂条件判断、多重筛选</div>
-        </li>
-        <li><b>赋值运算</b>：把计算结果存到变量里
-          <div>示例：<code>= += -= *= /=</code></div>
-          <div>具体例子：</div>
-          <ul>
-            <li><code>=</code>（赋值）：<code>age = 18</code> 表示"把18存到age变量里"</li>
-            <li><code>+=</code>（加后赋值）：<code>score += 10</code> 表示"score = score + 10"</li>
-            <li><code>*=</code>（乘后赋值）：<code>price *= 2</code> 表示"price = price * 2"</li>
-          </ul>
-          <div>用途：保存计算结果、更新变量值</div>
-        </li>
-      </ul>
+      <div class="block">
+        <p><b>运算符就像"计算器"</b>：</p>
+        <ul>
+          <li><b>算术运算</b>：像计算器一样做数学题
+            <div>示例：<code>加号+ 减号- 乘号* 除号/ 取余号%</code> 就像 <code>3 + 5 = 8</code>、<code>10 / 2 = 5</code></div>
+            <div>用途：价格计算、数量统计、百分比等</div>
+          </li>
+          <li><b>比较运算</b>：像"比大小"游戏
+            <div><code>> < >= <= == ===</code></div>
+            <div>== 和 === 的区别：== 是宽松比较，只比较内容是否相同，不检查类型，=== 是严格比较，除了检查内容是否相同还检查类型是否相同</div>
+            <div>示例：<code>5 > 3</code> 结果是 <code>true</code></div>
+            <div>用途：判断条件、筛选数据、做决定</div>
+          </li>
+          <li><b>逻辑运算</b>：把多个条件组合起来，判断是否满足条件
+            <div>示例：<code>&& || !</code></div>
+            <div>具体例子：</div>
+            <ul>
+              <li><code>&&</code>（与：必须所有条件都满足，结果才为真）：<code>age >= 18 && isBoy</code> 表示"年龄≥18岁 并且 是男孩"</li>
+              <li><code>||</code>（或：只要有一个条件满足，结果就为真）：<code>isStudent || isTeacher</code> 表示"是学生 或者 是老师"</li>
+              <li><code>!</code>（非：取反，结果为真变为假，结果为假变为真）：<code>!isBoy</code> 表示"不是男孩"</li>
+            </ul>
+            <div>用途：复杂条件判断、多重筛选</div>
+          </li>
+          <li><b>赋值运算</b>：把计算结果存到变量里
+            <div>示例：<code>= += -= *= /=</code></div>
+            <div>具体例子：</div>
+            <ul>
+              <li><code>=</code>（赋值）：<code>age = 18</code> 表示"把18存到age变量里"</li>
+              <li><code>+=</code>（加后赋值）：<code>score += 10</code> 表示"score = score + 10"</li>
+              <li><code>*=</code>（乘后赋值）：<code>price *= 2</code> 表示"price = price * 2"</li>
+            </ul>
+            <div>用途：保存计算结果、更新变量值</div>
+          </li>
+        </ul>
+      </div>
 
-      <p><b>为什么需要优先级？</b></p>
-      <p>就像数学里的"先乘除后加减"，编程也有运算顺序。但为了避免混乱，<b>建议总是加括号</b>，让代码意图更清晰。</p>
+      <div class="block">
+        <p><b>为什么需要优先级？</b></p>
+        <p>就像数学里的"先乘除后加减"，编程也有运算顺序。但为了避免混乱，<b>建议总是加括号</b>，让代码意图更清晰。</p>
+      </div>
       
-      <p><b>生活场景：超市收银系统</b></p>
-      <pre>需求：计算商品总价，满100减20
+      <div class="block">
+        <p><b>生活场景：超市收银系统</b></p>
+        <pre>需求：计算商品总价，满100减20
 思路：
 1) 计算商品总价：单价 × 数量
 2) 判断是否满减：商品总价 ≥ 100？
@@ -272,17 +288,21 @@ const total = (price * qty);  // 商品总价 = 45 × 3 = 135
 const isDiscount = (total >= 100);  // 是否满减？135 ≥ 100 = true
 const pay = (isDiscount ? (total - 20) : total);  // 实付 = 135 - 20 = 115
 console.log("实付金额：", pay, "元");  // 输出：实付金额：115 元</pre>
+      </div>
 
-      <p><b>编程思维：如何用运算表达逻辑？</b></p>
-      <ul>
-        <li><b>分解问题</b>：把复杂计算拆成简单步骤</li>
-        <li><b>选择运算符</b>：每个步骤用什么运算？</li>
-        <li><b>明确优先级</b>：用括号确保运算顺序正确</li>
-        <li><b>验证结果</b>：用不同数据测试是否正确</li>
-      </ul>
+      <div class="block">
+        <p><b>编程思维：如何用运算表达逻辑？</b></p>
+        <ul>
+          <li><b>分解问题</b>：把复杂计算拆成简单步骤</li>
+          <li><b>选择运算符</b>：每个步骤用什么运算？</li>
+          <li><b>明确优先级</b>：用括号确保运算顺序正确</li>
+          <li><b>验证结果</b>：用不同数据测试是否正确</li>
+        </ul>
+      </div>
 
-      <p><b>实际示例：学生成绩管理</b></p>
-      <pre>需求：判断学生是否能获得奖学金
+      <div class="block">
+        <p><b>实际示例：学生成绩管理</b></p>
+        <pre>需求：判断学生是否能获得奖学金
 条件：数学≥90分 并且 语文≥85分 并且 英语≥80分
 
 编程思维应用：
@@ -299,9 +319,11 @@ const canGetScholarship = (math >= 90) && (chinese >= 85) && (english >= 80);
 console.log("能否获得奖学金：", canGetScholarship);  // true
 
 验证：数学95≥90✓，语文88≥85✓，英语82≥80✓，所以能获得奖学金</pre>
+      </div>
 
-      <p><b>实际示例：购物优惠判断</b></p>
-      <pre>需求：VIP用户 或者 满200元 可以免运费
+      <div class="block">
+        <p><b>实际示例：购物优惠判断</b></p>
+        <pre>需求：VIP用户 或者 满200元 可以免运费
 
 编程思维应用：
 1) 分解问题：检查用户身份 或 订单金额
@@ -316,6 +338,7 @@ const freeShipping = isVip || (orderAmount >= 200);
 console.log("是否免运费：", freeShipping);  // true（因为是VIP）
 
 验证：VIP用户直接免运费，不需要满200元</pre>
+      </div>
     `,
     questions: [
       {
@@ -395,34 +418,79 @@ console.log("是否免运费：", freeShipping);  // true（因为是VIP）
     day: 3,
     title: "条件分支：if / 三元 / switch",
     intro: `
-      <p><code>if/else</code>：灵活，适合范围与复杂条件。</p>
-      <p>三元：在表达式内就地赋值，简洁但不要嵌套。</p>
-      <p><code>switch</code>：等值枚举更清晰，便于对齐分支。</p>
+      <div class="block">
+        <p><b>为什么需要“条件分支”？</b> 程序需要根据不同情况做不同事：如果分数≥90显示“优秀”，否则显示“继续加油”。这就需要“条件分支”。</p>
+      </div>
+
+      <div class="block">
+        <p><b>三种常见结构</b></p>
+        <ul>
+          <li><code>if / else if / else</code>（最常用）：最灵活，适合范围判断、多个条件组合。</li>
+          <li><code>cond ? a : b</code><b>三元运算</b>：快捷方式，适合简单的二选一。</li>
+          <li><code>switch</code>：较少用到，适合分支很多的情况。</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <p><b>如何选择？（经验法则）</b></p>
+        <ul>
+          <li>大多数情况 → 用 <code>if / else if</code> <br/>例如： if (score >= 90) { level = 'A'; } else if (score >= 80) { level = 'B'; } else { level = 'C'; } </li>
+          <li>简单“二选一”并且只是产生一个值 → 用 <b>三元</b> <br/>例如： const result = (score >= 60) ? '及格' : '不及格' </li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <p><b>示例：根据分数输出等级</b></p>
+        <pre>// if / else if / else（范围判断）
+const score = 88;
+let level = '';
+if(score >= 90){ level = 'A'; }
+else if(score >= 80){ level = 'B'; }
+else if(score >= 70){ level = 'C'; }
+else { level = 'D'; }
+console.log(level); // B
+
+// 三元（就地产生一个值）
+const msg = (score >= 90) ? '优秀' : '继续加油';
+console.log(msg);
+</pre>
+      </div>
+
+      <div class="block">
+        <p><b>编程思维</b></p>
+        <ul>
+          <li>先判断“问题类型”：范围？枚举？还是只产生一个值？</li>
+          <li>选择最贴合的结构，代码会更清晰。</li>
+          <li>实际操作中，经常在分支里打印日志，验证每个分支是否按预期进入。</li>
+        </ul>
+      </div>
     `,
     questions: [
       {
         id: 301,
         type: "mcq",
-        title: "选择合适的条件结构",
-        content: "根据 day（1~7）输出“星期一~星期日”，哪种更合适？",
+        title: "什么时候用三元运算更合适？",
+        content: "下列哪个场景更适合使用三元运算（cond ? a : b）？",
         options: [
-          "一串 if/else if 判断 day === 1, day === 2, ...",
-          "一个 switch(day) 按不同 case 输出",
-          "用三元表达式把所有情况嵌套起来",
+          "根据分数区间（90/80/70/其他）输出 A/B/C/D",
+          "只需根据是否及格（score>=60）选择 ‘及格’ 或 ‘不及格’",
+          "根据月份（1~12）输出季节",
+          "根据城市名匹配不同的邮费规则"
         ],
-        hint: "等值枚举更适合 switch；三元嵌套可读性差。",
-        solution: "switch 更清晰",
-        correct: [1],
+        hint: "三元适合简单的二选一，并且只为产生一个值。",
+        solution: "选 2。其余都更适合 if/else 或 switch。",
+        correct: [1]
       },
+
       {
-        id: 302,
+        id: 303,
         type: "text",
-        title: "三种结构改写",
-        content: "把 if/else if/else 的“分数等级”逻辑改写为 switch（区间可先转等级标识再 switch）。",
-        hint: "先把分数映射到等级 A/B/C/D，再 switch(level)。",
-        solution: '先通过 if 得到 level="A|B|C|D"，再 switch(level){case "A":...}',
-        validatorRegex: "switch\\s*\\(\\s*level\\s*\\)",
-      },
+        title: "组合条件：门票优惠规则",
+        content: "门票100元。若年龄<12 或 年龄≥60 则半价50；否则原价100。假设年龄是6岁，用 if/else 输出最终价格。",
+        hint: "if(age<12 || age>=60){ price=50 } else { price=100 }",
+        solution: "const age=10; let price; if(age<12 || age>=60){ price=50 } else { price=100 } console.log(price)",
+        validatorRegex: "if\s*\(\s*age\s*<\s*12\s*\|\|\s*age\s*>?=\s*60\s*\)[\s\S]*else[\s\S]*console\\.log\s*\(\s*price\s*\)"
+      }
     ],
   },
   {
