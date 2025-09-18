@@ -426,7 +426,7 @@ console.log("是否免运费：", freeShipping);  // true（因为是VIP）
         <p><b>三种常见结构</b></p>
         <ul>
           <li><code>if / else if / else</code>（最常用）：最灵活，适合范围判断、多个条件组合。</li>
-          <li><code>cond ? a : b</code><b>三元运算</b>：快捷方式，适合简单的二选一。</li>
+          <li><code>cond ? a : b</code><b>三元运算</b>：由?和:组成，适合简单的二选一。比如 const result = 1<2 ? 'yes' : 'no'; 则result的值为'yes'</li>
           <li><code>switch</code>：较少用到，适合分支很多的情况。</li>
         </ul>
       </div>
@@ -435,7 +435,7 @@ console.log("是否免运费：", freeShipping);  // true（因为是VIP）
         <p><b>如何选择？（经验法则）</b></p>
         <ul>
           <li>大多数情况 → 用 <code>if / else if</code> <br/>例如： if (score >= 90) { level = 'A'; } else if (score >= 80) { level = 'B'; } else { level = 'C'; } </li>
-          <li>简单“二选一”并且只是产生一个值 → 用 <b>三元</b> <br/>例如： const result = (score >= 60) ? '及格' : '不及格' </li>
+          <li>简单“二选一” → 用 <b>三元</b> <br/>例如： const result = (score >= 60) ? '及格' : '不及格' </li>
         </ul>
       </div>
 
@@ -469,17 +469,15 @@ console.log(msg);
       {
         id: 301,
         type: "mcq",
-        title: "什么时候用三元运算更合适？",
-        content: "下列哪个场景更适合使用三元运算（cond ? a : b）？",
+        title: "if-else 条件判断",
+        content: "以下代码片段中，哪个能正确判断用户等级？假设 score = 85",
         options: [
-          "根据分数区间（90/80/70/其他）输出 A/B/C/D",
-          "只需根据是否及格（score>=60）选择 ‘及格’ 或 ‘不及格’",
-          "根据月份（1~12）输出季节",
-          "根据城市名匹配不同的邮费规则"
+          "if (score >= 90) { level = 'A'; } else if (score >= 80) { level = 'B'; } else { level = 'C'; }",
+          "if (score >= 80) { level = 'B'; } else if (score >= 90) { level = 'A'; } else { level = 'C'; }"
         ],
-        hint: "三元适合简单的二选一，并且只为产生一个值。",
-        solution: "选 2。其余都更适合 if/else 或 switch。",
-        correct: [1]
+        hint: "注意条件判断的顺序和 else if 的使用，避免多个 if 导致重复赋值。",
+        solution: "选 1。条件从高到低判断，使用 else if 避免重复执行，score=85 会得到 'B'。",
+        correct: [0]
       },
 
       {
@@ -495,62 +493,183 @@ console.log(msg);
   },
   {
     day: 4,
-    title: "循环与数组：何时用 for，何时用 while",
+    title: "循环：让程序\"重复做事\"（for、while、数组遍历）",
     intro: `
-      <p><b>for</b>：已知次数/有明确下标范围；需要索引或步长控制。</p>
-      <p><b>while</b>：未知次数/等待条件发生（直到成功、直到队列空）。</p>
-      <p>避免无限循环：确保状态变化 + 出口条件；必要时加“计数上限”保护并打印日志。</p>
+      <div class="block">
+        <p><b>为什么需要"循环"？</b> 程序需要重复做同样的事：计算全班30个同学的平均分，不能写30遍代码，要用循环"重复计算"。</p>
+      </div>
+
+      <div class="block">
+        <p><b>循环就像"重复劳动"</b>：</p>
+        <ul>
+          <li><b>for 循环</b>：像"数数"，知道要重复几次
+            <div>结构：<code>for(初始值; 条件为真时继续循环; 每次循环的变化){ 重复做的事 }</code></div>
+            <div>示例：<code>for(let i = 0; i < 5; i++){ console.log(i); }</code> 会输出 0,1,2,3,4</div>
+            <div>用途：遍历数组、重复固定次数、有索引需求</div>
+          </li>
+          <li><b>while 循环</b>：像"直到...为止"，不知道要重复几次
+            <div>结构：<code>while(条件为真时继续循环){ 重复做的事 }</code></div>
+            <div>示例：<code>while(score < 60){ score += 5; }</code> 直到分数≥60才停止</div>
+            <div>用途：等待条件满足、处理未知数量数据、重试直到成功</div>
+          </li>
+          <li><b>for-of 循环</b>：像"逐个取出"，专门遍历数组
+            <div>结构：<code>for(const 元素 of 数组){ 处理每个元素 }</code></div>
+            <div>示例：<code>for(const item of [1,2,3]){ console.log(item); }</code> 会输出 1,2,3</div>
+            <div>用途：遍历数组元素、不需要索引时更简洁</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <p><b>如何选择循环类型？</b></p>
+        <ul>
+          <li>知道要重复几次 → 用 <code>for</code><br/>例如：计算1到100的和，遍历数组的每个元素</li>
+          <li>不知道要重复几次，但有停止条件 → 用 <code>while</code><br/>例如：猜数字游戏，直到猜对为止</li>
+          <li>遍历数组，不需要索引 → 用 <code>for-of</code><br/>例如：计算数组所有元素的和</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <p><b>生活场景：班级成绩统计</b></p>
+        <pre>需求：计算全班同学的平均分
+思路：
+1) 准备一个数组存放所有分数：[85, 92, 78, 96, 88]
+2) 用循环逐个累加分数
+3) 用总分数除以人数得到平均分
+
+代码实现：
+const scores = [85, 92, 78, 96, 88];  // 全班分数
+let total = 0;                        // 总分初始为0
+for(let i = 0; i < scores.length; i++){  // 遍历每个分数
+  total += scores[i];                 // 累加分数
+}
+const average = total / scores.length;   // 计算平均分
+console.log("平均分：", average);        // 输出：87.8</pre>
+      </div>
+
+      <div class="block">
+        <p><b>编程思维：如何设计循环？</b></p>
+        <ul>
+          <li><b>明确目标</b>：要重复做什么？重复几次？</li>
+          <li><b>选择循环类型</b>：for、while 还是 for-of？</li>
+          <li><b>设计循环条件</b>：什么时候开始？什么时候结束？</li>
+          <li><b>避免无限循环</b>：确保循环条件会变化，最终能结束</li>
+          <li><b>调试技巧</b>：在循环里打印日志，观察每次循环的变化</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <p><b>实际示例：猜数字游戏</b></p>
+        <pre>需求：让用户猜1-100的数字，直到猜对为止
+
+编程思维应用：
+1) 明确目标：重复"让用户输入，判断对错"直到猜对
+2) 选择循环类型：不知道要猜几次，用while
+3) 设计循环条件：while(用户还没猜对)
+4) 避免无限循环：猜对后就退出循环
+
+代码实现：
+const secret = 42;           // 秘密数字
+let guess = 0;               // 用户猜的数字
+let attempts = 0;            // 猜的次数
+
+while(guess !== secret){     // 只要没猜对就继续
+  guess = parseInt(prompt("猜一个1-100的数字："));  // 让用户输入
+  attempts++;                // 猜的次数+1
+  
+  if(guess < secret){
+    console.log("太小了！");
+  } else if(guess > secret){
+    console.log("太大了！");
+  }
+}
+
+console.log("恭喜！猜对了！用了", attempts, "次");</pre>
+      </div>
+
+      <div class="block">
+        <p><b>实际操作：循环调试技巧</b></p>
+        <pre>// 例：计算数组 [1,2,3,4,5] 的平方和
+function sumOfSquares(arr){
+  let sum = 0;
+  console.log('[调试] 开始计算，数组长度：', arr.length);
+  
+  for(let i = 0; i < arr.length; i++){
+    const square = arr[i] * arr[i];
+    console.log('[调试] 第', i+1, '次循环：', arr[i], '的平方是', square);
+    sum += square;
+    console.log('[调试] 当前累加和：', sum);
+  }
+  
+  console.log('[调试] 最终结果：', sum);
+  return sum;
+}
+
+// 小贴士：
+// 1) 在循环开始前打印初始状态
+// 2) 在循环内打印每次的变化
+// 3) 在循环结束后打印最终结果
+// 4) 如果循环不结束，检查条件是否永远为真</pre>
+      </div>
     `,
     questions: [
       {
         id: 401,
         type: "mcq",
-        title: "何时用 for 或 while？",
-        content: "下列需求更适合用哪种循环？（可多选）",
+        title: "循环类型选择",
+        content: "下列场景更适合用哪种循环？（可多选）",
         options: [
-          "遍历一个长度已知的数组，逐项相加",
-          "反复请求接口直到返回成功或超过 3 次",
-          "从队列中不停取任务直到队列为空",
-          "生成从 0 到 100 的偶数序列",
+          "计算全班30个同学的平均分（已知人数）",
+          "让用户猜数字，直到猜对为止（未知次数）",
+          "遍历购物车里的所有商品（不需要索引）",
+          "生成1到100的所有偶数（已知范围）",
         ],
-        hint: "已知次数/有下标→for；未知次数/等条件→while。",
-        solution: "1 和 4 用 for；2 和 3 用 while（2 也可 for 限制 3 次，但语义更像 while+退出）。",
+        hint: "已知次数用for，未知次数用while，遍历数组用for-of。",
+        solution: "1和4用for，2用while，3用for-of",
         correct: [0, 1, 2, 3],
         multiple: true,
       },
       {
         id: 402,
         type: "text",
-        title: "for 改写 while",
-        content: "把以下 while 改写成等价的 for：\nlet i = 0; while(i < 5){ console.log(i); i++; }",
-        hint: "for(初始化; 条件; 递增){...}",
-        solution: "for(let i = 0; i < 5; i++){ console.log(i); }",
-        validatorRegex:
-          "^\\s*for\\s*\\(\\s*let\\s+i\\s*=\\s*0\\s*;\\s*i\\s*<\\s*5\\s*;\\s*i\\s*\\+\\+\\s*\\)\\s*\\{[\\s\\S]*console\\.log\\s*\\(\\s*i\\s*\\)[\\s\\S]*\\}\\s*$",
+        title: "计算1到100的自然数之和",
+        content: "用for循环计算1到100的所有自然数相加之和并输出。",
+        hint: "从1开始到100结束，每次循环累加当前数字。",
+        solution: "let sum=0; for(let i=1; i<=100; i++){ sum+=i } console.log(sum)",
+        validatorRegex: "let\\s+sum\\s*=\\s*0\\s*;\\s*for\\s*\\(\\s*let\\s+\\w+\\s*=\\s*1\\s*;\\s*\\w+\\s*<=\\s*100\\s*;\\s*\\w+\\s*\\+\\+\\s*\\)\\s*\\{[\\s\\S]*sum\\s*\\+=\\s*\\w+[\\s\\S]*\\}[\\s\\S]*console\\.log\\s*\\(\\s*sum\\s*\\)",
       },
       {
         id: 403,
         type: "text",
-        title: "求数组和（for-of）",
-        content: "用 for-of 计算数组 [1,2,3,4] 的和并输出结果。",
-        hint: "let sum=0; for(const x of arr){ sum+=x }",
-        solution: "const arr=[1,2,3,4]; let sum=0; for(const x of arr){ sum+=x } console.log(sum)",
-        validatorRegex: "for\\s*\\(\\s*const\\s+\\w+\\s+of\\s+\\[\\s*1\\s*,\\s*2\\s*,\\s*3\\s*,\\s*4\\s*\\]\\s*\\)",
+        title: "用for-of遍历数组",
+        content: "用for-of循环遍历数组 ['苹果','香蕉','橙子'] 并输出每个水果。",
+        hint: "for(const fruit of fruits){ console.log(fruit) }",
+        solution: "const fruits=['苹果','香蕉','橙子']; for(const fruit of fruits){ console.log(fruit) }",
+        validatorRegex: "const\\s+fruits\\s*=\\s*\\[\\s*['\"][^'\"]*['\"][\\s\\S]*\\][\\s\\S]*for\\s*\\(\\s*const\\s+\\w+\\s+of\\s+fruits\\s*\\)\\s*\\{[\\s\\S]*console\\.log\\s*\\(\\s*\\w+\\s*\\)[\\s\\S]*\\}",
       },
       {
         id: 404,
+        type: "text",
+        title: "while循环：计算1到100的自然数之和",
+        content: "用while循环计算1到100的所有自然数相加之和并输出。",
+        hint: "let i=1; let sum=0; while(i<=100){ sum+=i; i++ } console.log(sum)",
+        solution: "let i=1; let sum=0; while(i<=100){ sum+=i; i++ } console.log(sum)",
+        validatorRegex: "let\\s+\\w+\\s*=\\s*1\\s*;\\s*let\\s+sum\\s*=\\s*0\\s*;\\s*while\\s*\\(\\s*\\w+\\s*<=\\s*100\\s*\\)\\s*\\{[\\s\\S]*sum\\s*\\+=\\s*\\w+[\\s\\S]*\\w+\\s*\\+\\+[\\s\\S]*\\}[\\s\\S]*console\\.log\\s*\\(\\s*sum\\s*\\)",
+      },
+      {
+        id: 405,
         type: "mcq",
-        title: "避免无限循环的做法",
-        content: "哪些做法有助于避免或定位无限循环？",
+        title: "循环调试技巧",
+        content: "哪些做法有助于调试循环问题？（可多选）",
         options: [
-          "确保循环体中有状态变化（接近退出条件）",
-          "在条件难判断时，增加计数上限保护并在达上限时 break",
-          "在循环内加入关键日志（如当前计数/关键变量）",
-          "把退出条件写成恒真表达式，这样更简单",
+          "在循环开始前打印初始状态",
+          "在循环内打印每次的变化过程",
+          "在循环结束后打印最终结果",
+          "如果循环不结束，检查条件是否永远为真",
         ],
-        hint: "防御性编程：状态变化、上限保护、日志。",
-        solution: "选 1、2、3",
-        correct: [0, 1, 2],
+        hint: "调试循环要观察开始、过程、结束三个阶段。",
+        solution: "全部正确，这是循环调试的标准做法",
+        correct: [0, 1, 2, 3],
         multiple: true,
       },
     ],
