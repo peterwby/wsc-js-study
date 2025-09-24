@@ -52,26 +52,26 @@ console.log(newPay); // 9.45
       <div class="block">
         <p><b>数组与对象</b></p>
         <ul>
-          <li>数组（array）：像一排座位或购物车里的商品队列，位置从 0 开始排号，<code>fruits[0]</code> 就是第一个座位/第一个商品。适合“同类项的集合”。
+          <li>数组（array）：像一排座位或购物车里的商品队列，位置从 0 开始排号，<code>fruits[0]</code> 就是第一个座位/第一个商品。适合"同类项的集合"。
             <ul>
               <li>常见操作：为数组添加元素、删除元素、遍历数组。</li>
               <li>例：<code>const cart = [{name:'可乐', price:3.5}, {name:'面包', price:6}]</code></li>
             </ul>
           </li>
-          <li>对象（object）：像一张“信息卡”或资料袋，每个格子都有名字，<code>user.name</code> 就是取“姓名”格。适合“一个事物的属性包”。
+          <li>对象（object）：像一张"信息卡"或资料袋，每个格子都有名字，<code>user.name</code> 就是取"姓名"格。适合"一个事物的属性包"。
             <ul>
               <li>更像字典/映射：<code>const user = { id:1, name:'Tom', vip:true }</code></li>
             </ul>
           </li>
           <li><i>它们与简单数据类型（number/string/boolean）有什么不同？</i>
             <ul>
-              <li>简单类型只有一个值；数组/对象是“容器”，可以装很多值，还能嵌套。</li>
-              <li>数组按“位置号”取值，比如取数组arr的第一个元素用 arr[0]；对象按“名字键”取值，比如取对象obj的name属性用 obj.name。</li>
-              <li>描述“一组东西”用数组；描述“一个东西的多个属性”用对象。</li>
+              <li>简单类型只有一个值；数组/对象是"容器"，可以装很多值，还能嵌套。</li>
+              <li>数组按"位置号"取值，比如取数组arr的第一个元素用 arr[0]；对象按"名字键"取值，比如取对象obj的name属性用 obj.name。</li>
+              <li>描述"一组东西"用数组；描述"一个东西的多个属性"用对象。</li>
             </ul>
           </li>
         </ul>
-        <p><b>小贴士：数组与对象怎么选？</b> 如果你在列清单（很多相同种类）→ 用 <code>数组</code>；如果你在填表（同一个东西的不同栏位/属性）→ 用 <code>对象</code>。取数组的第一个元素用 <code>arr[0]</code>，取对象的“姓名”属性用 <code>obj.name</code>。</p>
+        <p><b>小贴士：数组与对象怎么选？</b> 如果你在列清单（很多相同种类）→ 用 <code>数组</code>；如果你在填表（同一个东西的不同栏位/属性）→ 用 <code>对象</code>。取数组的第一个元素用 <code>arr[0]</code>，取对象的"姓名"属性用 <code>obj.name</code>。</p>
       </div>
       <div class="block">
         <p><b>编程思路</b></p>
@@ -104,7 +104,7 @@ console.log(newPay); // 9.45
    - 用 [60, 70, 80] 测试：应该输出 70, "继续加油"
   </pre>
         <p>
-          <b>进一步学习</b>：如果想系统看“变量/数据类型”的完整语法，请参考
+          <b>进一步学习</b>：如果想系统看"变量/数据类型"的完整语法，请参考
           <a href="https://www.runoob.com/js/js-variables.html" target="_blank" rel="noopener">变量（runoob）</a>
           与
           <a href="https://www.runoob.com/js/js-datatypes.html" target="_blank" rel="noopener">数据类型（runoob）</a>。
@@ -171,7 +171,7 @@ console.log(newPay); // 9.45
         id: 116,
         type: "mcq",
         title: "选择文本还是数字",
-        content: "下面哪些更适合用数字存？哪些更适合用字符串存？（可多选，选“数字更合适”的项）",
+        content: "下面哪些更适合用数字存？哪些更适合用字符串存？（可多选，选 \"数字更合适\" 的项）",
         options: ["年龄 12", '电话号码 "13800138000"', "价格 9.9", '邮编 "100000"'],
         hint: "会做加减比较的→数字；只当作标识/不会算术→字符串。",
         solution: "年龄、价格适合数字；电话号码、邮编适合字符串（避免前导 0 丢失且不会做加减）。",
@@ -198,7 +198,7 @@ console.log(newPay); // 9.45
         id: 112,
         type: "mcq",
         title: "哪些场景更适合用 const？（可多选）",
-        content: "从下列选出“更应该用 const”的场景（可多选）",
+        content: "从下列选出 \"更应该用 const\" 的场景（可多选）",
         options: [
           "保存不会被重新赋值的配置对象",
           "循环中计数 i 需要自增",
@@ -220,6 +220,82 @@ console.log(newPay); // 9.45
           'const scores=[95,88,76]; const me={name:"Lily", age:11}; console.log(scores[0]); console.log(me.name)',
         validatorRegex:
           "scores\\s*=\\s*\\[\\s*95\\s*,\\s*88\\s*,\\s*76\\s*\\][\\s\\S]*me\\s*=\\s*\\{[\\s\\S]*name[\\s\\S]*11[\\s\\S]*\\}[\\s\\S]*console\\.log\\s*\\(\\s*scores\\s*\\[\\s*0\\s*\\]\\s*\\)[\\s\\S]*console\\.log\\s*\\(\\s*me\\.name\\s*\\)",
+      },
+    ],
+  },
+  {
+    day: 5,
+    title: "综合练习：循环 + 条件（动手拆解思路）",
+    intro: `
+      <div class="block">
+        <p><b>编程思维：循环里加条件，怎么拆？</b></p>
+        <ul>
+          <li><b>明确目标</b>：要重复处理什么？在什么情况下做判断？</li>
+          <li><b>列出步骤</b>：初始化 → 循环 → 在每次循环中做判断（if） → 累加/输出 → 结束</li>
+          <li><b>小步验证</b>：先打印每次循环的中间值，再加上条件判断</li>
+        </ul>
+        <pre>实际例子：输出 1~10 中能被 2 整除的数字
+
+1) 明确目标：遍历 1→10；遇到能被2整除的数字就输出
+2) 先写"遍历"再写"条件"
+3) 加日志验证每一步是否按预期执行
+
+代码（带日志）：
+for(let i = 1; i <= 10; i++){
+  console.log('[调试] 当前 i =', i);
+  if(i % 2 === 0){
+    console.log(i); // 满足条件才输出
+  }
+}
+
+验证方法：先看"[调试] 当前 i = …"是否从1到10，再看输出是否为 2,4,6,8,10</pre>
+      </div>
+
+      <div class="block">
+        <p><b>例子1：打印直角三角形（1~9行）</b></p>
+        <pre>目标：
+*
+**
+***
+...
+*********
+
+思路：
+1) 外层循环控制行号 i（1→9）
+2) 每一行输出 i 个星号
+3) 可先打印 i，确认循环次数对，再打印星号
+        </pre>
+      </div>
+
+      <div class="block">
+        <p><b>例子2：循环 + 条件判断</b></p>
+        <pre>目标：输出 1~10 中能被 2 整除的数字
+
+思路：
+1) 循环 i 从 1 到 10
+2) 如果 i % 2 === 0 则输出 i
+3) 先打印所有 i，确认范围；再加上条件判断
+        </pre>
+      </div>
+    `,
+    questions: [
+      {
+        id: 501,
+        type: "text",
+        title: "打印直角三角形（1~9行）",
+        content: "用循环打印1到9行的直角三角形：第一行1个*，第9行9个*。每行一个console.log。",
+        hint: "外层循环控制行号i=1..9；每行可用'*'.repeat(i)；或内层循环拼接字符串。",
+        solution: "for(let i=1;i<=9;i++){ console.log('*'.repeat(i)) }",
+        validatorRegex: "for\\s*\\([\\s\\S]*i\\s*=\\s*1[\\s\\S]*i\\s*<=\\s*9[\\s\\S]*i\\+\\+[\\s\\S]*\\)[\\s\\S]*console\\.log\\s*\\(\\s*['\"]\\*['\"][\\s\\S]*i[\\s\\S]*\\)",
+      },
+      {
+        id: 502,
+        type: "text",
+        title: "输出1~30中能被3整除的数",
+        content: "用循环与条件，输出从1到30所有能被3整除的数字（每个数字一行）。",
+        hint: "for(let i=1;i<=30;i++){ if(i%3===0){ console.log(i) } }",
+        solution: "for(let i=1;i<=30;i++){ if(i%3===0){ console.log(i) } }",
+        validatorRegex: "for\\s*\\([\\s\\S]*i\\s*=\\s*1[\\s\\S]*i\\s*<=\\s*30[\\s\\S]*i\\+\\+[\\s\\S]*\\)[\\s\\S]*if\\s*\\([\\s\\S]*i\\s*%\\s*3\\s*===\\s*0[\\s\\S]*\\)[\\s\\S]*console\\.log\\s*\\(\\s*i\\s*\\)",
       },
     ],
   },
@@ -279,7 +355,7 @@ console.log(newPay); // 9.45
 思路：
 1) 计算商品总价：单价 × 数量
 2) 判断是否满减：商品总价 ≥ 100？
-3) 计算实付：如果“满减”就把总价减20，否则就按原价支付
+3) 计算实付：如果"满减"就把总价减20，否则就按原价支付
 
 代码实现：
 const price = 45;        // 单价45元
@@ -419,7 +495,7 @@ console.log("是否免运费：", freeShipping);  // true（因为是VIP）
     title: "条件分支：if / 三元 / switch",
     intro: `
       <div class="block">
-        <p><b>为什么需要“条件分支”？</b> 程序需要根据不同情况做不同事：如果分数≥90显示“优秀”，否则显示“继续加油”。这就需要“条件分支”。</p>
+        <p><b>为什么需要"条件分支"？</b> 程序需要根据不同情况做不同事：如果分数≥90显示"优秀"，否则显示"继续加油"。这就需要"条件分支"。</p>
       </div>
 
       <div class="block">
@@ -435,7 +511,7 @@ console.log("是否免运费：", freeShipping);  // true（因为是VIP）
         <p><b>如何选择？（经验法则）</b></p>
         <ul>
           <li>大多数情况 → 用 <code>if / else if</code> <br/>例如： if (score >= 90) { level = 'A'; } else if (score >= 80) { level = 'B'; } else { level = 'C'; } </li>
-          <li>简单“二选一” → 用 <b>三元</b> <br/>例如： const result = (score >= 60) ? '及格' : '不及格' </li>
+          <li>简单"二选一" → 用 <b>三元</b> <br/>例如： const result = (score >= 60) ? '及格' : '不及格' </li>
         </ul>
       </div>
 
@@ -459,7 +535,7 @@ console.log(msg);
       <div class="block">
         <p><b>编程思维</b></p>
         <ul>
-          <li>先判断“问题类型”：范围？枚举？还是只产生一个值？</li>
+          <li>先判断"问题类型"：范围？枚举？还是只产生一个值？</li>
           <li>选择最贴合的结构，代码会更清晰。</li>
           <li>实际操作中，经常在分支里打印日志，验证每个分支是否按预期进入。</li>
         </ul>
@@ -486,8 +562,8 @@ console.log(msg);
         title: "组合条件：门票优惠规则",
         content: "门票100元。若年龄<12 或 年龄≥60 则半价50；否则原价100。假设年龄是6岁，用 if/else 输出最终价格。",
         hint: "if(age<12 || age>=60){ price=50 } else { price=100 }",
-        solution: "const age=10; let price; if(age<12 || age>=60){ price=50 } else { price=100 } console.log(price)",
-        validatorRegex: "if\s*\(\s*age\s*<\s*12\s*\|\|\s*age\s*>?=\s*60\s*\)[\s\S]*else[\s\S]*console\\.log\s*\(\s*price\s*\)"
+        solution: "const age=6; let price; if(age<12 || age>=60){ price=50 } else { price=100 } console.log(price)",
+        validatorRegex: "if[\\s\\S]*else[\\s\\S]*console\\.log\\s*\\(\\s*(price|50)\\s*\\)",
       }
     ],
   },
@@ -556,6 +632,76 @@ console.log("平均分：", average);        // 输出：87.8</pre>
           <li><b>避免无限循环</b>：确保循环条件会变化，最终能结束</li>
           <li><b>调试技巧</b>：在循环里打印日志，观察每次循环的变化</li>
         </ul>
+      </div>
+
+      <div class="block">
+        <p><b>实际示例：存钱罐比喻 - 理解 sum = sum + i</b></p>
+        <pre>需求：计算1到100的总和，理解累加过程
+
+🏦 存钱罐比喻：
+想象你有一个"存钱罐"，要计算1到100的总和：
+
+let sum = 0;  // 存钱罐开始是空的（0元）
+
+第1次循环：i=1
+  sum = sum + i;  // sum = 0 + 1 = 1（存钱罐里有1元）
+  
+第2次循环：i=2  
+  sum = sum + i;  // sum = 1 + 2 = 3（存钱罐里有3元）
+  
+第3次循环：i=3
+  sum = sum + i;  // sum = 3 + 3 = 6（存钱罐里有6元）
+  
+...一直加到100
+
+最终：sum = 5050（存钱罐里总共有5050元）
+
+🔴 重要理解：sum = sum + i 的含义
+<span style="color: red;">这不是数学上的等式！</span>在JavaScript中：
+• = 是赋值运算符（不是等号）
+• == 才是等号（比较是否相等）
+
+赋值运算的过程：
+1. 要把等号右边的 sum + i 的计算结果赋值给左边的sum
+2. 先读取sum的当前值，再加上i的新值，计算出结果
+3. 把计算结果赋值给等号左边的sum
+4. sum原来的旧值被覆盖，变成新的值
+
+简化写法：sum += i 等同于 sum = sum + i</pre>
+      </div>
+
+      <div class="block">
+        <p><b>实际示例：逐步演示1到5的累加过程</b></p>
+        <pre>需求：用调试技巧观察累加的每一步
+
+代码实现（带调试）：
+let sum = 0;
+console.log('开始：sum =', sum);  // 0
+
+for(let i = 1; i <= 5; i++){
+  console.log('第' + i + '次循环前：sum =', sum, ', 要加的数字是', i);
+  sum += i;  // 🔴 赋值操作：sum = sum + i
+  console.log('第' + i + '次循环后：sum =', sum);
+}
+
+console.log('最终结果：sum =', sum);  // 15
+
+输出结果：
+开始：sum = 0
+第1次循环前：sum = 0 , 要加的数字是 1
+第1次循环后：sum = 1  ← 赋值：0+1=1，覆盖了原来的0
+第2次循环前：sum = 1 , 要加的数字是 2  
+第2次循环后：sum = 3  ← 赋值：1+2=3，覆盖了原来的1
+第3次循环前：sum = 3 , 要加的数字是 3
+第3次循环后：sum = 6  ← 赋值：3+3=6，覆盖了原来的3
+第4次循环前：sum = 6 , 要加的数字是 4
+第4次循环后：sum = 10 ← 赋值：6+4=10，覆盖了原来的6
+第5次循环前：sum = 10 , 要加的数字是 5
+第5次循环后：sum = 15 ← 赋值：10+5=15，覆盖了原来的10
+最终结果：sum = 15
+
+🔴 关键观察：每次赋值操作都会覆盖sum的旧值！
+调试技巧：在循环里打印中间结果，就能看到每一步的变化过程！</pre>
       </div>
 
       <div class="block">
@@ -633,8 +779,8 @@ function sumOfSquares(arr){
         id: 402,
         type: "text",
         title: "计算1到100的自然数之和",
-        content: "用for循环计算1到100的所有自然数相加之和并输出。",
-        hint: "从1开始到100结束，每次循环累加当前数字。",
+        content: "用for循环计算1到100的所有自然数相加之和并输出。\n\n💡 提示：想象一个存钱罐，每次循环往里面放一个数字。",
+        hint: "let sum=0; for(let i=1; i<=100; i++){ sum+=i } console.log(sum)\n\n存钱罐比喻：sum是存钱罐，每次循环把当前数字i放进存钱罐。",
         solution: "let sum=0; for(let i=1; i<=100; i++){ sum+=i } console.log(sum)",
         validatorRegex: "let\\s+sum\\s*=\\s*0\\s*;\\s*for\\s*\\(\\s*let\\s+\\w+\\s*=\\s*1\\s*;\\s*\\w+\\s*<=\\s*100\\s*;\\s*\\w+\\s*\\+\\+\\s*\\)\\s*\\{[\\s\\S]*sum\\s*\\+=\\s*\\w+[\\s\\S]*\\}[\\s\\S]*console\\.log\\s*\\(\\s*sum\\s*\\)",
       },
@@ -651,8 +797,8 @@ function sumOfSquares(arr){
         id: 404,
         type: "text",
         title: "while循环：计算1到100的自然数之和",
-        content: "用while循环计算1到100的所有自然数相加之和并输出。",
-        hint: "let i=1; let sum=0; while(i<=100){ sum+=i; i++ } console.log(sum)",
+        content: "用while循环计算1到100的所有自然数相加之和并输出。\n\n💡 提示：while循环的存钱罐过程：只要i≤100就继续往存钱罐里放数字。",
+        hint: "let i=1; let sum=0; while(i<=100){ sum+=i; i++ } console.log(sum)\n\n存钱罐比喻：只要还有数字要加（i≤100），就继续往存钱罐里放。",
         solution: "let i=1; let sum=0; while(i<=100){ sum+=i; i++ } console.log(sum)",
         validatorRegex: "let\\s+\\w+\\s*=\\s*1\\s*;\\s*let\\s+sum\\s*=\\s*0\\s*;\\s*while\\s*\\(\\s*\\w+\\s*<=\\s*100\\s*\\)\\s*\\{[\\s\\S]*sum\\s*\\+=\\s*\\w+[\\s\\S]*\\w+\\s*\\+\\+[\\s\\S]*\\}[\\s\\S]*console\\.log\\s*\\(\\s*sum\\s*\\)",
       },
@@ -675,46 +821,95 @@ function sumOfSquares(arr){
     ],
   },
   {
-    day: 5,
+    day: 6,
     title: "函数的作用：封装、复用、抽象、可测试",
     intro: `
-      <p>为什么要有函数？</p>
-      <ul>
-        <li>封装：隐藏实现细节；</li>
-        <li>复用：不重复写同样逻辑；</li>
-        <li>命名抽象：提升可读性；</li>
-        <li>可测试：输入→输出可验证。</li>
-      </ul>
+      <div class="block">
+        <p><b>函数是什么？为什么需要函数？</b></p>
+        <p>函数就像"工具盒里的小工具"，把一件事情的步骤装进去，给它一个名字，以后需要时就可以拿来用。比如：把"计算两数之和"这件事装进 add(a, b) 这个小工具里，哪里需要相加，就拿出来用：add(2, 3)。</p>
+        <ul>
+          <li><b>封装</b>：把复杂步骤装进一个盒子里，对外只暴露"名字"和"输入/输出"。</li>
+          <li><b>复用</b>：相同的事情不用重复写很多次，调用函数即可。</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <p><b>函数的基本结构</b></p>
+        <pre>// 声明函数：这个函数的名称叫add，它有两个参数a和b，该函数的作用是传入a和b，它会计算a和b的和，并把计算结果返回给我们。
+function add(a, b){
+  const result = a + b;   // 处理
+  return result;          // 输出
+}
+
+// 调用
+const x = add(2, 3);      // x = 5
+console.log(x);</pre>
+        <p><b>要点</b>：参数是"输入"，return 是"输出"；函数体中可以写多步逻辑。</p>
+      </div>
+
+      <div class="block">
+        <p><b>实际示例：打印价格 → 提炼函数</b></p>
+        <pre>// 需求：多处打印"价格: X元"
+console.log("价格:", 19.9 + "元");
+console.log("价格:", 29 + "元");
+
+// 提炼成函数
+function printPrice(price){
+  console.log("价格:", price + "元");
+}
+
+// 复用
+printPrice(19.9);
+printPrice(29);
+</pre>
+        <p>通过命名，我们把"做什么"表达清楚，阅读者不需要关心内部细节。</p>
+      </div>
+
+      <div class="block">
+        <p><b>良好函数的特征</b></p>
+        <ul>
+          <li><b>单一职责</b>：一个函数只做"一件清楚的事"。</li>
+          <li><b>可组合</b>：多个函数可以组合成一个更复杂的函数。函数内部可以调用别的函数</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <p><b>调试与测试：如何验证函数正确性</b></p>
+        <pre>// 例：纯函数格式化价格
+function formatPrice(p){
+  return "价格:" + p + "元";
+}
+
+console.log(formatPrice(19.9)); // 价格:19.9元
+console.log(formatPrice(29));   // 价格:29元
+
+// 思考：
+// - 当输入是负数/小数/字符串时应如何处理？
+// - 需要保护输入吗（参数校验）？
+</pre>
+        <p>小建议：为关键函数准备 2-3 个最小用例；在函数内部必要处打印中间值，定位错误更高效。</p>
+      </div>
     `,
     questions: [
       {
         id: 501,
         type: "text",
-        title: "提炼函数（封装与复用）",
+        title: "综合练习：for 循环 + 函数（区间求和）",
         content:
-          '把以下重复打印价格的代码提炼成函数 printPrice(price){...} 并调用两次。\nconst p1 = 19.9; console.log("价格:", p1 + "元"); const p2 = 29; console.log("价格:", p2 + "元");',
-        hint: '把 console.log("价格:", x + "元") 封装为函数并复用。',
-        solution: 'function printPrice(p){ console.log("价格:", p + "元"); } printPrice(19.9); printPrice(29);',
-        validatorRegex: "function\\s+printPrice\\s*\\(\\s*p\\s*\\)\\s*\\{[\\s\\S]*?\\}\\s*printPrice\\s*\\(",
+          '编写函数 sum(n, m) 使用 for 循环计算从 n 到 m 的和；调用两次演示：sum(1, 3)、sum(2, 4)，并用 console.log 打印结果。',
+        hint: 'function sum(n,m){ let s=0; for(let i=n;i<=m;i++){ s+=i } return s }\nconsole.log(sum(1,3)); // 6\nconsole.log(sum(2,4)); // 9',
+        solution: 'function sum(n,m){ let s=0; for(let i=n;i<=m;i++){ s+=i } return s } console.log(sum(1,3)); console.log(sum(2,4))',
+        validatorRegex: "function\\s+sum\\s*\\(\\s*n\\s*,\\s*m\\s*\\)[\\s\\S]*for\\s*\\([\\s\\S]*i\\s*=\\s*n[\\s\\S]*i\\s*<=\\s*m[\\s\\S]*i\\+\\+[\\s\\S]*\\)[\\s\\S]*s\\s*\\+=\\s*i[\\s\\S]*return\\s+s[\\s\\S]*console\\.log\\s*\\(\\s*sum\\s*\\(\\s*1\\s*,\\s*3\\s*\\)\\s*\\)[\\s\\S]*console\\.log\\s*\\(\\s*sum\\s*\\(\\s*2\\s*,\\s*4\\s*\\)\\s*\\)",
       },
-      {
-        id: 502,
-        type: "mcq",
-        title: "什么是纯函数",
-        content: "下列哪个更符合“纯函数”？",
-        options: ["读取外部变量并修改它", "只依赖输入参数并返回新值，不修改外部状态", "在函数内把全局配置改掉"],
-        hint: "纯函数=可预测、无副作用。",
-        solution: "选 2",
-        correct: [1],
-      },
+     
     ],
   },
   {
-    day: 6,
+    day: 7,
     title: "对象与解构，值/引用与浅拷贝",
     intro: `
       <p>对象用来组织具名数据；解构/展开让代码更简洁。</p>
-      <p>引用语义：对象/数组赋值的是“引用”；用 <code>{...obj}</code> 可以做浅拷贝。</p>
+      <p>引用语义：对象/数组赋值的是"引用"；用 <code>{...obj}</code> 可以做浅拷贝。</p>
     `,
     questions: [
       {
@@ -743,7 +938,7 @@ function sumOfSquares(arr){
     ],
   },
   {
-    day: 7,
+    day: 8,
     title: "小项目方法论 + fetch 第三方API（天气）",
     intro: `
       <p><b>项目需求（示例：词频统计 + 天气展示）</b></p>
@@ -779,7 +974,7 @@ function sumOfSquares(arr){
         id: 702,
         type: "mcq",
         title: "分解步骤的顺序",
-        content: "做一个“词频统计”的合理步骤是？",
+        content: "做一个 \"词频统计\" 的合理步骤是？",
         options: [
           "先写 UI，再决定输入输出格式",
           "先明确输入/输出与边界，再分解步骤并各自验证",

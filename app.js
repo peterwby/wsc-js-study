@@ -36,9 +36,8 @@
     $('#title').textContent = `JS 7天入门 - Day ${day}：${d.title}`;
     const prog = dayProgress(day);
     $('#progressText').textContent = `完成 ${prog.done}/${prog.total}`;
-    const lockNext = !isDayComplete(day);
     const nextBtn = $('#next');
-    nextBtn.disabled = lockNext || (day >= LESSONS.length);
+    nextBtn.disabled = (day >= LESSONS.length);
 
     const html = `
       <div>
@@ -58,7 +57,6 @@
             <div class="result" id="res-${q.id}"></div>
           </div>
         `).join('')}
-        <div class="muted">完成本日全部题目后，“下一课”按钮将解锁。</div>
       </div>
     `;
     $('#lesson').innerHTML = html;
@@ -132,7 +130,7 @@
       if(card){ card.classList.toggle('done', !!res.correct); }
       const prog = dayProgress(state.day);
       $('#progressText').textContent = `完成 ${prog.done}/${prog.total}`;
-      $('#next').disabled = !isDayComplete(state.day) || (state.day >= LESSONS.length);
+      $('#next').disabled = (state.day >= LESSONS.length);
     }
   }
 
