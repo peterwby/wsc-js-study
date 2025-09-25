@@ -906,129 +906,71 @@ console.log(formatPrice(29));   // 价格:29元
   },
   {
     day: 7,
-    title: "对象与解构，值/引用与浅拷贝",
+    title: "实战项目：学生成绩情况统计系统",
     intro: `
-      <p>对象用来组织具名数据；解构/展开让代码更简洁。</p>
-      <p>引用语义：对象/数组赋值的是"引用"；用 <code>{...obj}</code> 可以做浅拷贝。</p>
+      <div class="block">
+        <p><b>项目目标：创建一个学生成绩统计网页</b></p>
+        <p>通过这个实战项目，你将综合运用前面学过的所有知识：变量、循环、条件、函数，以及HTML和CSS基础，创建一个完整的网页应用。</p>
+      </div>
+
+      <div class="block">
+        <p><b>项目需求描述</b></p>
+        <p>创建一个学生成绩情况统计系统，具备以下功能：</p>
+        <ol>
+          <li><b>成绩等级设置</b>：在网页上定义"优、良、及格、不及格"四个等级的分数标准</li>
+          <li><b>成绩输入</b>：提供一个输入框，让用户输入所有学生的成绩（用逗号分隔）</li>
+          <li><b>统计计算</b>：点击提交按钮后，自动统计各等级的人数分布</li>
+          <li><b>结果展示</b>：在网页上显示统计结果，包括各等级人数和百分比</li>
+        </ol>
+      </div>
+
+      <div class="block">
+        <p><b>功能详细说明</b></p>
+        <ul>
+          <li><b>等级标准设置</b>：
+            <ul>
+              <li>优秀：90分及以上</li>
+              <li>良好：80-89分</li>
+              <li>及格：60-79分</li>
+              <li>不及格：60分以下</li>
+            </ul>
+          </li>
+          <li><b>输入格式</b>：用户输入如 "85,92,78,96,88,65,72,91" 这样的成绩列表</li>
+          <li><b>输出结果</b>：显示类似 "优秀：2人(25%)，良好：3人(37.5%)，及格：2人(25%)，不及格：1人(12.5%)" 的统计信息</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <p><b>测试用例</b></p>
+        <p>用以下测试数据验证你的程序：</p>
+        <ul>
+          <li>输入：<code>85,92,78,96,88,65,72,91</code></li>
+          <li>期望输出：优秀2人(25%)，良好3人(37.5%)，及格2人(25%)，不及格1人(12.5%)</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <p><b>扩展功能（可选）</b></p>
+        <ul>
+          <li>添加平均分计算</li>
+          <li>显示最高分和最低分</li>
+          <li>支持自定义等级标准</li>
+          <li>添加数据验证（检查输入格式）</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <p><b>项目交付要求</b></p>
+        <p>创建一个完整的HTML文件，包含：</p>
+        <ul>
+          <li>完整的HTML结构</li>
+          <li>内嵌的CSS样式</li>
+          <li>内嵌的JavaScript代码</li>
+          <li>能够正常运行并显示统计结果</li>
+        </ul>
+        <p>文件可以直接在浏览器中打开使用。</p>
+      </div>
     `,
-    questions: [
-      {
-        id: 601,
-        type: "text",
-        title: "解构与默认值",
-        content: '从对象 {name:"Tom", age:18} 解构出 name，并给 city 设默认值 "Beijing"。',
-        hint: 'const { name, city = "Beijing" } = obj',
-        solution: 'const obj = {name:"Tom", age:18}; const { name, city = "Beijing" } = obj',
-        validatorRegex: "\\{\\s*name\\s*,\\s*city\\s*=\\s*[\"']Beijing[\"']\\s*\\}\\s*=\\s*obj",
-      },
-      {
-        id: 602,
-        type: "mcq",
-        title: "避免原数据被改动",
-        content: "合并配置且避免修改原对象，选择正确写法。",
-        options: [
-          "const c = Object.assign(base, extra)",
-          "const c = { ...base, ...extra }",
-          'base.theme = "dark"; const c = base',
-        ],
-        hint: "不要改动输入对象；使用新对象返回。",
-        solution: "选 2",
-        correct: [1],
-      },
-    ],
-  },
-  {
-    day: 8,
-    title: "小项目方法论 + fetch 第三方API（天气）",
-    intro: `
-      <p><b>项目需求（示例：词频统计 + 天气展示）</b></p>
-      <ol>
-        <li>输入：一段文本；输出：按词出现次数排序的列表（去空词、大小写统一）。</li>
-        <li>扩展：点击按钮获取某城市天气（<code>fetch</code> 调用 wttr.in，无需密钥）。</li>
-      </ol>
-      <p><b>通用方法：</b>明确输入/输出 → 分解步骤 → 小步验证 → 打日志调试。</p>
-      <button id="runWordCount">示例：统计这段文本</button>
-      <pre id="wcOut"></pre>
-      <button id="demoWeather">示例：北京天气</button>
-      <pre id="weatherOut"></pre>
-    `,
-    questions: [
-      {
-        id: 701,
-        type: "text",
-        title: "编写 fetch 获取天气（城市→天气）",
-        content:
-          '写一个函数 getWeather(city) 使用 fetch 获取指定城市的天气并返回字符串，如 "25°C, Sunny"。可用 wttr.in JSON： https://wttr.in/{city}?format=j1',
-        hint: "注意 encodeURIComponent、await res.json()、错误处理。",
-        solution: `async function getWeather(city){
-  const url = \`https://wttr.in/\${encodeURIComponent(city)}?format=j1\`;
-  const res = await fetch(url);
-  if(!res.ok) throw new Error('网络错误');
-  const data = await res.json();
-  const cur = data.current_condition && data.current_condition[0];
-  return \`\${cur.temp_C}°C, \${(cur.weatherDesc?.[0]?.value)||''}\`;
-}`,
-        validatorRegex: "fetch\\s*\\(\\s*`?https?://wttr\\.in/\\$?\\{?encodeURIComponent\\(",
-      },
-      {
-        id: 702,
-        type: "mcq",
-        title: "分解步骤的顺序",
-        content: "做一个 \"词频统计\" 的合理步骤是？",
-        options: [
-          "先写 UI，再决定输入输出格式",
-          "先明确输入/输出与边界，再分解步骤并各自验证",
-          "先实现排序，最后再考虑如何统计",
-          "每步都可单独验证（小步测试）",
-        ],
-        hint: "先目标与边界，再分解；每步可验证。",
-        solution: "选 2、4",
-        correct: [1, 3],
-        multiple: true,
-      },
-      {
-        id: 703,
-        type: "text",
-        title: "实现纯函数 wordCount(text)",
-        content: "写函数 wordCount(text) 返回 { word: count }。忽略大小写，过滤空字符串。",
-        hint: "text.toLowerCase().split(/\\W+/).filter(Boolean)",
-        solution: `function wordCount(text){
-  const m = {};
-  for(const w of text.toLowerCase().split(/\\W+/).filter(Boolean)){
-    m[w] = (m[w]||0)+1;
-  }
-  return m;
-}`,
-        validatorRegex:
-          "function\\s+wordCount\\s*\\(\\s*text\\s*\\)[\\s\\S]*split\\s*\\(\\s*/\\\\W\\+/(\\s*)\\)[\\s\\S]*return|function\\s+wordCount",
-      },
-      {
-        id: 704,
-        type: "text",
-        title: "排序输出 Top N",
-        content: "基于 wordCount 的结果对象，输出出现次数最高的前 3 个单词（字符串）。",
-        hint: "Object.entries(m).sort((a,b)=>b[1]-a[1]).slice(0,3)",
-        solution: `function top3(m){
-  return Object.entries(m).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([w,c])=>w+':'+c).join(', ');
-}`,
-        validatorRegex: "Object\\.entries\\s*\\(\\s*\\w+\\s*\\)\\s*\\.sort\\s*\\(",
-      },
-      {
-        id: 705,
-        type: "mcq",
-        title: "测试与调试的实践",
-        content: "哪些做法能提升小项目的正确性与可维护性？",
-        options: [
-          "为核心函数准备 2-3 个最小用例（输入→期望输出）",
-          "用 console.log 打印关键中间结果以核对思路",
-          "发现 bug 时一次性重写全部代码",
-          "为容易出错的步骤（如排序）写断言类检查",
-        ],
-        hint: "小步验证、聚焦问题、对关键步骤加检查。",
-        solution: "选 1、2、4",
-        correct: [0, 1, 3],
-        multiple: true,
-      },
-    ],
+    questions: [],
   },
 ];
